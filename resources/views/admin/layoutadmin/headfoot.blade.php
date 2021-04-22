@@ -7,9 +7,9 @@
     <title>Dashboard-Admin</title>
 
     <!-- Site favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('admin/vendors/images/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/vendors/images/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/vendors/images/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('admin/vendors/images/logokd.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('admin/vendors/images/logokd.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/vendors/images/logokd.png') }}">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -237,7 +237,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-edit2"></span><span class="mtext">Menu</span>
+                            <span class="micon dw dw-menu"></span><span class="mtext">Menu</span>
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ url('adminmakan') }}">Makanan</a></li>
@@ -246,12 +246,12 @@
                     </li>
                     <li>
                         <a href="{{ url('eventadmin') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-library"></span><span class="mtext">Event</span>
+                            <span class="micon dw dw-agenda1"></span><span class="mtext">Event</span>
                         </a>
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-calendar1"></span><span class="mtext">Pengunjung</span>
+                            <span class="micon dw dw-group"></span><span class="mtext">Pengunjung</span>
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ url('pesan') }}">Pemesanan</a></li>
@@ -266,7 +266,7 @@
                     </li>
                     <li class="dropdown">
                         <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon dw dw-apartment"></span><span class="mtext"> Pengaturan </span>
+                            <span class="micon dw dw-settings2"></span><span class="mtext"> Pengaturan </span>
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ url('tampil') }}">Tampilan</a></li>
