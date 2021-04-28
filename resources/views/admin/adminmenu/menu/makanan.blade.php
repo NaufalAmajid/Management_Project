@@ -41,17 +41,46 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="home2" role="tabpanel">
                                 <div class="pd-20">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est laborum.
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">#</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <th scope="row">2</th>
+                                                    <th scope="row">3</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <th scope="row">2</th>
+                                                    <th scope="row">3</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <th scope="row">2</th>
+                                                    <th scope="row">3</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
+
+
+                            {{-- TAMBAH DATA --}}
+
                             <div class="tab-pane fade" id="profile2" role="tabpanel">
                                 <div class="pd-20">
-                                    <form action="">
+                                    <form action="{{ route('makan.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Kode Makanan</label>
                                             <div class="col-sm-6 col-md-6">
@@ -71,6 +100,32 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <input class="form-control" name="hargamakan" type="text"
                                                     placeholder="Masukkan Harga...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-md-2 col-form-label">Jenis Makanan</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <select class="selectpicker form-control" data-style="btn-outline-primary"
+                                                    data-size="5" name="jenis">
+                                                    <optgroup label="---" data-max-options="2">
+                                                        <option value="MakanBesar">Makan Besar</option>
+                                                        <option value="Paketan">Paketan</option>
+                                                        <option value="Cemilan">Cemilan</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-md-2 col-form-label">Gambar Makanan</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <input type="file" class="form-control-file form-control height-auto">
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 col-md-12">
+                                                <button type="submit" class="btn col-sm-12 col-md-12" data-bgcolor="#3b5998"
+                                                    data-color="#ffffff"><i class="fa fa-telegram"></i> Simpan</button>
                                             </div>
                                         </div>
                                     </form>

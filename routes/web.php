@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,9 +54,8 @@ Route::get('/kd-admin', function () {
 });
 
 // ------------Menu
-Route::get('/adminmakan', function () {
-    return view('admin.adminmenu.menu.makanan');
-});
+
+Route::resource('makan', 'App\Http\Controllers\MakananController');
 
 Route::get('/adminminum', function () {
     return view('admin.adminmenu.menu.minuman');

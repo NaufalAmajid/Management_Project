@@ -240,7 +240,7 @@
                             <span class="micon dw dw-menu"></span><span class="mtext">Menu</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ url('adminmakan') }}">Makanan</a></li>
+                            <li><a href="{{ route('makan.index') }}">Makanan</a></li>
                             <li><a href="{{ url('adminminum') }}">Minuman</a></li>
                         </ul>
                     </li>
