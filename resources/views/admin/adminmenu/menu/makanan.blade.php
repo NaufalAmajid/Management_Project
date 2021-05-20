@@ -46,27 +46,34 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">#</th>
+                                                    <th scope="col">No</th>
+                                                    <th scope="col">Kode Makanan</th>
+                                                    <th scope="col">Nama Makanan</th>
+                                                    <th scope="col">Harga</th>
+                                                    <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <th scope="row">2</th>
-                                                    <th scope="row">3</th>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <th scope="row">2</th>
-                                                    <th scope="row">3</th>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <th scope="row">2</th>
-                                                    <th scope="row">3</th>
-                                                </tr>
+                                                @php
+                                                    $i=1;
+                                                @endphp
+                                                @foreach ($datamakan as $item)
+
+                                                    <tr>
+                                                        <th scope="row">{{ $i++ }}</th>
+                                                        <th scope="row">{{ $item->kode_makanan }}</th>
+                                                        <th scope="row">{{ $item->nama_makanan }}</th>
+                                                        <th scope="row">{{ $item->harga }}</th>
+                                                        <th scope="row">
+                                                            <button type="button" class="btn" data-bgcolor="#fd3535"
+                                                                data-color="#ffffff"><i class="fa fa-trash-o"></i></button>
+
+                                                            <button type="button" class="btn" data-bgcolor="#1a4bf9"
+                                                                data-color="#ffffff"><i class="fa fa-pencil-square-o"></i></button>
+                                                        </th>
+                                                    </tr>
+
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -80,51 +87,49 @@
                             <div class="tab-pane fade" id="profile2" role="tabpanel">
                                 <div class="pd-20">
                                     <form action="{{ route('makan.store') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
+                                        {{ csrf_field() }}
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Kode Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <input class="form-control" name="kodemakan" type="text"
+                                                <input class="form-control" id="kode_makanan" name="kode_makanan" type="text"
                                                     placeholder="Masukkan Kode...">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-md-2 col-form-label">Nama Makanan</label>
-                                            <div class="col-sm-12 col-md-10">
-                                                <input class="form-control" name="namamakan" type="text"
+                                            <label class="col-sm-6 col-md-2 col-form-label">Nama Makanan</label>
+                                            <div class="col-sm-6 col-md-6">
+                                                <input class="form-control" id="nama_makanan" name="nama_makanan" type="text"
                                                     placeholder="Masukkan Nama...">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Harga Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <input class="form-control" name="hargamakan" type="text"
+                                                <input class="form-control" id="harga" name="harga" type="number"
                                                     placeholder="Masukkan Harga...">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Jenis Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <select class="selectpicker form-control" data-style="btn-outline-primary"
-                                                    data-size="5" name="jenis">
-                                                    <optgroup label="---" data-max-options="2">
-                                                        <option value="MakanBesar">Makan Besar</option>
-                                                        <option value="Paketan">Paketan</option>
-                                                        <option value="Cemilan">Cemilan</option>
-                                                    </optgroup>
+                                                <select class="selectpicker form-control" data-size="5" id="jenis" name="jenis">
+                                                    <option value="-">...</option>
+                                                    <option value="MakanBesar">Makan Besar</option>
+                                                    <option value="Paketan">Paketan</option>
+                                                    <option value="Cemilan">Cemilan</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Gambar Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <input type="file" class="form-control-file form-control height-auto">
+                                                <input type="file" class="form-control-file form-control height-auto" name="gambar_makanan">
                                             </div>
                                         </div>
                                         <div class="dropdown-divider"></div>
                                         <div class="form-group row">
                                             <div class="col-sm-12 col-md-12">
-                                                <button type="submit" class="btn col-sm-12 col-md-12" data-bgcolor="#3b5998"
+                                                <button type="submit" class="btn col-sm-12 col-md-12" data-bgcolor="#1b30ee"
                                                     data-color="#ffffff"><i class="fa fa-telegram"></i> Simpan</button>
                                             </div>
                                         </div>

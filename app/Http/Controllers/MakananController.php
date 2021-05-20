@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Makanan;
 use Illuminate\Http\Request;
 
 class MakananController extends Controller
@@ -13,7 +14,8 @@ class MakananController extends Controller
      */
     public function index()
     {
-        return view('admin.adminmenu.menu.makanan');
+        $datamakan = Makanan::latest()->get();
+        return view('admin.adminmenu.menu.makanan', compact('datamakan'));
     }
 
     /**
@@ -34,7 +36,21 @@ class MakananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $namagambar = $request->gambar_makanan;
+        $namafile   = $namagambar->getClientOriginalName();
+
+
+        $upload     = new Makanan;
+        $upload->kode_makanan = $request->kode_makanan;
+        $upload->nama_makanan = $request->nama_makanan;
+        $upload->harga = $request->harga;
+        $upload->jenis = $request->jenis;
+        $upload->gambar_makanan = $namafile;
+
+        $namagambar->move(public_path() . '/gambar', $namafile);
+        $upload->save();
+
+        return redirect('makan');
     }
 
     /**

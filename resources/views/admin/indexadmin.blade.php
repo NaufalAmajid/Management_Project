@@ -389,8 +389,8 @@
                     <td class="table-plus">
                         <div class="name-avatar d-flex align-items-center">
                             <div class="avatar mr-2 flex-shrink-0">
-                                <img src="{{ asset('admin/vendors/images/photo2.jpg') }}" class="border-radius-100 shadow"
-                                    width="40" height="40" alt="">
+                                <img src="{{ asset('admin/vendors/images/photo2.jpg') }}"
+                                    class="border-radius-100 shadow" width="40" height="40" alt="">
                             </div>
                             <div class="txt">
                                 <div class="weight-600">Neil Arnold</div>
@@ -413,8 +413,8 @@
                     <td class="table-plus">
                         <div class="name-avatar d-flex align-items-center">
                             <div class="avatar mr-2 flex-shrink-0">
-                                <img src="{{ asset('admin/vendors/images/photo8.jpg') }}" class="border-radius-100 shadow"
-                                    width="40" height="40" alt="">
+                                <img src="{{ asset('admin/vendors/images/photo8.jpg') }}"
+                                    class="border-radius-100 shadow" width="40" height="40" alt="">
                             </div>
                             <div class="txt">
                                 <div class="weight-600">Christian Dyer</div>
@@ -437,8 +437,8 @@
                     <td class="table-plus">
                         <div class="name-avatar d-flex align-items-center">
                             <div class="avatar mr-2 flex-shrink-0">
-                                <img src="{{ asset('admin/vendors/images/photo1.jpg') }}" class="border-radius-100 shadow"
-                                    width="40" height="40" alt="">
+                                <img src="{{ asset('admin/vendors/images/photo1.jpg') }}"
+                                    class="border-radius-100 shadow" width="40" height="40" alt="">
                             </div>
                             <div class="txt">
                                 <div class="weight-600">Doris L. Larson</div>
