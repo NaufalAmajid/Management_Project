@@ -84,7 +84,27 @@ class MakananController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $edit    = Makanan::find($id);
+        $pertama = $edit->gambar_makanan;
+
+        // $data    = [
+        //     'kode_makanan'   => $request->kode_makanan,
+        //     'nama_makanan'   => $request->nama_makanan,
+        //     'harga'          => $request->harga,
+        //     'jenis'          => $request->jenismakanan,
+        //     'gambar_makanan' => $pertama,
+        // ];
+
+        $request->gambar_makanan->move(public_path() . '/gambar', $pertama);
+        $edit->update([
+            'kode_makanan'   => $request->kode_makanan,
+            'nama_makanan'   => $request->nama_makanan,
+            'harga'          => $request->harga,
+            'jenis'          => $request->jenismakanan,
+            'gambar_makanan' => $pertama,
+        ]);
+
+        return redirect('makan');
     }
 
     /**

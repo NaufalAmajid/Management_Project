@@ -50,12 +50,13 @@
                                                     <th scope="col">Kode Makanan</th>
                                                     <th scope="col">Nama Makanan</th>
                                                     <th scope="col">Harga</th>
+                                                    <th scope="col">Item</th>
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @php
-                                                    $i=1;
+                                                    $i = 1;
                                                 @endphp
                                                 @foreach ($datamakan as $item)
 
@@ -65,13 +66,122 @@
                                                         <th scope="row">{{ $item->nama_makanan }}</th>
                                                         <th scope="row">{{ $item->harga }}</th>
                                                         <th scope="row">
+                                                            <img src="{{ asset('gambar/' . $item->gambar_makanan) }}"
+                                                                alt="" style="width: 50px; height: 50px">
+                                                        </th>
+                                                        <th scope="row">
                                                             <button type="button" class="btn" data-bgcolor="#fd3535"
                                                                 data-color="#ffffff"><i class="fa fa-trash-o"></i></button>
 
                                                             <button type="button" class="btn" data-bgcolor="#1a4bf9"
-                                                                data-color="#ffffff"><i class="fa fa-pencil-square-o"></i></button>
+                                                                data-color="#ffffff" data-toggle="modal"
+                                                                data-target="#Medium-modal-{{ $item->id }}"><i
+                                                                    class="fa fa-pencil-square-o"></i></button>
                                                         </th>
                                                     </tr>
+
+                                                    {{-- EDIT DATA MAKANAN --}}
+
+
+                                                    <div class="modal fade" id="Medium-modal-{{ $item->id }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" id="myLargeModalLabel">Ubah
+                                                                        Data
+                                                                        Makanan</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-hidden="true">×</button>
+                                                                </div>
+                                                                <form action="{{ route('makan.update', $item->id) }}"
+                                                                    method="POST" enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    {{-- @method('PUT') --}}
+                                                                    <input type="hidden" value="PUT" name="_method">
+                                                                    <div class="modal-body">
+
+                                                                        <div class="form-group row">
+                                                                            <label
+                                                                                class="col-sm-6 col-md-4 col-form-label">Kode
+                                                                                Makanan</label>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <input class="form-control"
+                                                                                    id="kode_makanan" name="kode_makanan"
+                                                                                    type="text"
+                                                                                    value="{{ $item->kode_makanan }}"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label
+                                                                                class="col-sm-6 col-md-4 col-form-label">Nama
+                                                                                Makanan</label>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <input class="form-control"
+                                                                                    id="nama_makanan" name="nama_makanan"
+                                                                                    type="text"
+                                                                                    value="{{ $item->nama_makanan }}"
+                                                                                    required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label
+                                                                                class="col-sm-6 col-md-4 col-form-label">Harga
+                                                                                Makanan</label>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <input class="form-control" id="harga"
+                                                                                    name="harga" type="number"
+                                                                                    value="{{ $item->harga }}" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <label
+                                                                                class="col-sm-6 col-md-4 col-form-label">Jenis
+                                                                                Makanan</label>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <select class="custom-select"
+                                                                                    name="jenismakanan">
+                                                                                    <option value="{{ $item->jenis }}"
+                                                                                        selected="">
+                                                                                        {{ $item->jenis }}</option>
+                                                                                    <option value="Makan Besar">Makan Besar
+                                                                                    </option>
+                                                                                    <option value="Paketan">Paketan</option>
+                                                                                    <option value="Cemilan">Cemilan</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row">
+                                                                            <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+                                                                                <div class="da-card">
+                                                                                    <div class="da-card-photo">
+                                                                                        <img src="{{ asset('gambar/' . $item->gambar_makanan) }}"
+                                                                                            alt="">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-sm-6 col-md-6">
+                                                                                <input type="file"
+                                                                                    class="form-control-file form-control height-auto"
+                                                                                    name="gambar_makanan"
+                                                                                    value="{{ $item->gambar_makanan }}">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan
+                                                                            Perubahan</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
 
                                                 @endforeach
                                             </tbody>
@@ -86,35 +196,37 @@
 
                             <div class="tab-pane fade" id="profile2" role="tabpanel">
                                 <div class="pd-20">
-                                    <form action="{{ route('makan.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('makan.store') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Kode Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <input class="form-control" id="kode_makanan" name="kode_makanan" type="text"
-                                                    placeholder="Masukkan Kode...">
+                                                <input class="form-control" id="kode_makanan" name="kode_makanan"
+                                                    type="text" placeholder="Masukkan Kode..." required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Nama Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <input class="form-control" id="nama_makanan" name="nama_makanan" type="text"
-                                                    placeholder="Masukkan Nama...">
+                                                <input class="form-control" id="nama_makanan" name="nama_makanan"
+                                                    type="text" placeholder="Masukkan Nama..." required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Harga Makanan</label>
                                             <div class="col-sm-6 col-md-6">
                                                 <input class="form-control" id="harga" name="harga" type="number"
-                                                    placeholder="Masukkan Harga...">
+                                                    placeholder="Masukkan Harga..." required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Jenis Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <select class="selectpicker form-control" data-size="5" id="jenis" name="jenis">
+                                                <select class="selectpicker form-control" data-size="5" id="jenis"
+                                                    name="jenis" required>
                                                     <option value="-">...</option>
-                                                    <option value="MakanBesar">Makan Besar</option>
+                                                    <option value="Makan Besar">Makan Besar</option>
                                                     <option value="Paketan">Paketan</option>
                                                     <option value="Cemilan">Cemilan</option>
                                                 </select>
@@ -123,7 +235,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Gambar Makanan</label>
                                             <div class="col-sm-6 col-md-6">
-                                                <input type="file" class="form-control-file form-control height-auto" name="gambar_makanan">
+                                                <input type="file" class="form-control-file form-control height-auto"
+                                                    name="gambar_makanan" required>
                                             </div>
                                         </div>
                                         <div class="dropdown-divider"></div>
@@ -138,15 +251,32 @@
                             </div>
                             <div class="tab-pane fade" id="contact2" role="tabpanel">
                                 <div class="pd-20">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                    mollit anim id est laborum.
+                                    <div class="product-wrap">
+                                        <div class="product-list">
+                                            <ul class="row">
+                                                @foreach ($datamakan as $data)
+                                                    <li class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="product-box">
+                                                            <div class="producct-img"><img class="col-md-12"
+                                                                    src="{{ asset('gambar/' . $data->gambar_makanan) }}"
+                                                                    alt="" style="width: auto; height: 200px">
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h4><a href="#">{{ $data->nama_makanan }}</a></h4>
+                                                                <div class="price">
+                                                                    <ins>@rupiah($data->harga)</ins>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
