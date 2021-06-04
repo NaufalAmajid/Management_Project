@@ -87,14 +87,6 @@ class MakananController extends Controller
         $edit    = Makanan::find($id);
         $pertama = $edit->gambar_makanan;
 
-        // $data    = [
-        //     'kode_makanan'   => $request->kode_makanan,
-        //     'nama_makanan'   => $request->nama_makanan,
-        //     'harga'          => $request->harga,
-        //     'jenis'          => $request->jenismakanan,
-        //     'gambar_makanan' => $pertama,
-        // ];
-
         $request->gambar_makanan->move(public_path() . '/gambar', $pertama);
         $edit->update([
             'kode_makanan'   => $request->kode_makanan,
@@ -115,6 +107,14 @@ class MakananController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Makanan::find($id);
+        $file = public_path('/gambar/').$delete->gambar_makanan;
+
+        if (file_exists($file)) {
+            @unlink($file);
+        }
+
+        $delete->delete();
+        return redirect('makan');
     }
 }

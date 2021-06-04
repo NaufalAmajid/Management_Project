@@ -76,9 +76,7 @@ Route::get('/testi', function () {
 });
 
 // ------------Pengaturan
-Route::get('/galeri', function () {
-    return view('admin.adminmenu.pengaturan.galeri');
-});
+Route::resource('galeri', 'App\Http\Controllers\GaleryController');
 
 Route::get('/tampil', function () {
     return view('admin.adminmenu.pengaturan.tampilan');

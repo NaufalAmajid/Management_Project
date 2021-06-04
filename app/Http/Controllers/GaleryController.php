@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Galery;
 use Illuminate\Http\Request;
 
 class GaleryController extends Controller
@@ -13,7 +14,8 @@ class GaleryController extends Controller
      */
     public function index()
     {
-        //
+        $gambar = Galery::latest()->get();
+        return view('admin.adminmenu.pengaturan.galeri', compact('gambar'));
     }
 
     /**
@@ -34,7 +36,17 @@ class GaleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nama = $request->gambar;
+        $namafile = $nama->getClientOriginalName();
+
+        $upload = new Galery;
+        $upload->gambar = $namafile;
+
+        $nama->move(public_path() . '/galery', $namafile);
+        $upload->save();
+
+
+        return redirect('galeri');
     }
 
     /**
@@ -56,7 +68,6 @@ class GaleryController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -68,7 +79,14 @@ class GaleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $edit = Galery::find($id);
+        $awal = $edit->gambar;
+
+        $request->gambar->move(public_path().'/galery',$awal);
+        $edit->update([
+            'gambar' => $awal,
+        ]);
+        return redirect('galeri');
     }
 
     /**

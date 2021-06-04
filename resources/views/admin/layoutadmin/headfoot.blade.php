@@ -270,7 +270,7 @@
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ url('tampil') }}">Tampilan</a></li>
-                            <li><a href="{{ url('galeri') }}">Galeri</a></li>
+                            <li><a href="{{ route('galeri.index') }}">Galeri</a></li>
                             <li><a href="{{ url('tentang') }}">Tentang</a></li>
                         </ul>
                     </li>

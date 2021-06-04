@@ -59,7 +59,11 @@
                                                     $i = 1;
                                                 @endphp
                                                 @foreach ($datamakan as $item)
-
+                                                    <form action="{{ route('makan.destroy', $item->id) }}" method="POST"
+                                                        id="{{ $item->id }}">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                    </form>
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
                                                         <th scope="row">{{ $item->kode_makanan }}</th>
@@ -70,8 +74,9 @@
                                                                 alt="" style="width: 50px; height: 50px">
                                                         </th>
                                                         <th scope="row">
-                                                            <button type="button" class="btn" data-bgcolor="#fd3535"
-                                                                data-color="#ffffff"><i class="fa fa-trash-o"></i></button>
+                                                            <button type="submit" onclick="return confirm('Anda yakin menghapus data menu ini?')" form="{{ $item->id }}" class="btn"
+                                                                data-bgcolor="#fd3535" data-color="#ffffff" ><i
+                                                                    class="fa fa-trash-o"></i></button>
 
                                                             <button type="button" class="btn" data-bgcolor="#1a4bf9"
                                                                 data-color="#ffffff" data-toggle="modal"
@@ -98,7 +103,6 @@
                                                                 <form action="{{ route('makan.update', $item->id) }}"
                                                                     method="POST" enctype="multipart/form-data">
                                                                     {{ csrf_field() }}
-                                                                    {{-- @method('PUT') --}}
                                                                     <input type="hidden" value="PUT" name="_method">
                                                                     <div class="modal-body">
 
