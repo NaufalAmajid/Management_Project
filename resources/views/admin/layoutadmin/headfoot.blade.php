@@ -231,7 +231,7 @@
             <div class="sidebar-menu">
                 <ul id="accordion-menu">
                     <li>
-                        <a href="{{ url('kd-admin') }}" class="dropdown-toggle no-arrow">
+                        <a href="{{ route('kd-admin.index') }}" class="dropdown-toggle no-arrow">
                             <span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
                         </a>
                     </li>
@@ -241,7 +241,7 @@
                         </a>
                         <ul class="submenu">
                             <li><a href="{{ route('makan.index') }}">Makanan</a></li>
-                            <li><a href="{{ url('adminminum') }}">Minuman</a></li>
+                            <li><a href="{{ route('minum.index') }}">Minuman</a></li>
                         </ul>
                     </li>
                     <li>
@@ -292,6 +292,7 @@
         <div class="xs-pd-20-10 pd-ltr-20">
 
             @yield('content')
+            @include('sweetalert::alert')
 
             <div class="row"></div>
 

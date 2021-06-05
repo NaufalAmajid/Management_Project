@@ -14,8 +14,15 @@ class MakananController extends Controller
      */
     public function index()
     {
-        $datamakan = Makanan::latest()->get();
-        return view('admin.adminmenu.menu.makanan', compact('datamakan'));
+        $cemilan = Makanan::select()->where('jenis', '=', 'Cemilan')
+            ->get();
+        $mabes = Makanan::select()->where('jenis', '=', 'Makan Besar')
+            ->get();
+        $paket = Makanan::select()->where('jenis', '=', 'Paketan')
+            ->get();
+        $datamakan = Makanan::orderBy('jenis', 'asc')
+            ->get();
+        return view('admin.adminmenu.menu.makanan', compact('datamakan', 'mabes', 'paket', 'cemilan'));
     }
 
     /**
@@ -39,9 +46,7 @@ class MakananController extends Controller
         $namagambar = $request->gambar_makanan;
         $namafile   = $namagambar->getClientOriginalName();
 
-
         $upload     = new Makanan;
-        $upload->kode_makanan = $request->kode_makanan;
         $upload->nama_makanan = $request->nama_makanan;
         $upload->harga = $request->harga;
         $upload->jenis = $request->jenis;
@@ -50,7 +55,7 @@ class MakananController extends Controller
         $namagambar->move(public_path() . '/gambar', $namafile);
         $upload->save();
 
-        return redirect('makan');
+        return redirect('makan')->with('success', 'Menu Berhasil Ditambahkan');
     }
 
     /**
@@ -89,14 +94,13 @@ class MakananController extends Controller
 
         $request->gambar_makanan->move(public_path() . '/gambar', $pertama);
         $edit->update([
-            'kode_makanan'   => $request->kode_makanan,
             'nama_makanan'   => $request->nama_makanan,
             'harga'          => $request->harga,
             'jenis'          => $request->jenismakanan,
             'gambar_makanan' => $pertama,
         ]);
 
-        return redirect('makan');
+        return redirect('makan')->with('info', 'Menu Berhasil DiUbah');
     }
 
     /**
@@ -108,13 +112,13 @@ class MakananController extends Controller
     public function destroy($id)
     {
         $delete = Makanan::find($id);
-        $file = public_path('/gambar/').$delete->gambar_makanan;
+        $file = public_path('/gambar/') . $delete->gambar_makanan;
 
         if (file_exists($file)) {
             @unlink($file);
         }
 
         $delete->delete();
-        return redirect('makan');
+        return redirect('makan')->with('warning', 'Menu Berhasil DiHapus');
     }
 }

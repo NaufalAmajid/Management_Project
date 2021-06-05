@@ -49,17 +49,13 @@ Route::get('/about', function () {
 
 // *********************HALAMAN ADMIN*********************
 
-Route::get('/kd-admin', function () {
-    return view('admin.indexadmin');
-});
+Route::resource('kd-admin', 'App\Http\Controllers\AdminController');
 
 // ------------Menu
 
 Route::resource('makan', 'App\Http\Controllers\MakananController');
 
-Route::get('/adminminum', function () {
-    return view('admin.adminmenu.menu.minuman');
-});
+Route::resource('minum', 'App\Http\Controllers\MinumanController');
 
 // ------------Event
 Route::get('/eventadmin', function () {

@@ -47,7 +47,7 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">No</th>
-                                                    <th scope="col">Kode Makanan</th>
+                                                    <th scope="col">Jenis Makanan</th>
                                                     <th scope="col">Nama Makanan</th>
                                                     <th scope="col">Harga</th>
                                                     <th scope="col">Item</th>
@@ -66,16 +66,18 @@
                                                     </form>
                                                     <tr>
                                                         <th scope="row">{{ $i++ }}</th>
-                                                        <th scope="row">{{ $item->kode_makanan }}</th>
+                                                        <th scope="row">{{ $item->jenis }}</th>
                                                         <th scope="row">{{ $item->nama_makanan }}</th>
-                                                        <th scope="row">{{ $item->harga }}</th>
+                                                        <th scope="row">@rupiah($item->harga)</th>
                                                         <th scope="row">
                                                             <img src="{{ asset('gambar/' . $item->gambar_makanan) }}"
                                                                 alt="" style="width: 50px; height: 50px">
                                                         </th>
                                                         <th scope="row">
-                                                            <button type="submit" onclick="return confirm('Anda yakin menghapus data menu ini?')" form="{{ $item->id }}" class="btn"
-                                                                data-bgcolor="#fd3535" data-color="#ffffff" ><i
+                                                            <button type="submit"
+                                                                onclick="return confirm('Anda yakin menghapus data menu ini?')"
+                                                                form="{{ $item->id }}" class="btn"
+                                                                data-bgcolor="#fd3535" data-color="#ffffff"><i
                                                                     class="fa fa-trash-o"></i></button>
 
                                                             <button type="button" class="btn" data-bgcolor="#1a4bf9"
@@ -106,18 +108,6 @@
                                                                     <input type="hidden" value="PUT" name="_method">
                                                                     <div class="modal-body">
 
-                                                                        <div class="form-group row">
-                                                                            <label
-                                                                                class="col-sm-6 col-md-4 col-form-label">Kode
-                                                                                Makanan</label>
-                                                                            <div class="col-sm-6 col-md-6">
-                                                                                <input class="form-control"
-                                                                                    id="kode_makanan" name="kode_makanan"
-                                                                                    type="text"
-                                                                                    value="{{ $item->kode_makanan }}"
-                                                                                    required>
-                                                                            </div>
-                                                                        </div>
                                                                         <div class="form-group row">
                                                                             <label
                                                                                 class="col-sm-6 col-md-4 col-form-label">Nama
@@ -204,13 +194,6 @@
                                         enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="form-group row">
-                                            <label class="col-sm-6 col-md-2 col-form-label">Kode Makanan</label>
-                                            <div class="col-sm-6 col-md-6">
-                                                <input class="form-control" id="kode_makanan" name="kode_makanan"
-                                                    type="text" placeholder="Masukkan Kode..." required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
                                             <label class="col-sm-6 col-md-2 col-form-label">Nama Makanan</label>
                                             <div class="col-sm-6 col-md-6">
                                                 <input class="form-control" id="nama_makanan" name="nama_makanan"
@@ -256,19 +239,75 @@
                             <div class="tab-pane fade" id="contact2" role="tabpanel">
                                 <div class="pd-20">
                                     <div class="product-wrap">
+                                        <div class="title row">
+                                            <h6 class="mb-10">----- Makan Besar -----</h6>
+                                        </div>
+                                        <div class="mb-10"></div>
                                         <div class="product-list">
                                             <ul class="row">
-                                                @foreach ($datamakan as $data)
+                                                @foreach ($mabes as $m)
                                                     <li class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="product-box">
                                                             <div class="producct-img"><img class="col-md-12"
-                                                                    src="{{ asset('gambar/' . $data->gambar_makanan) }}"
+                                                                    src="{{ asset('gambar/' . $m->gambar_makanan) }}"
                                                                     alt="" style="width: auto; height: 200px">
                                                             </div>
                                                             <div class="product-caption">
-                                                                <h4><a href="#">{{ $data->nama_makanan }}</a></h4>
+                                                                <h4><a href="#">{{ $m->nama_makanan }}</a></h4>
                                                                 <div class="price">
-                                                                    <ins>@rupiah($data->harga)</ins>
+                                                                    <ins>@rupiah($m->harga)</ins>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-wrap">
+                                        <div class="title row">
+                                            <h6 class="mb-10">----- PAKETAN -----</h6>
+                                        </div>
+                                        <div class="mb-10"></div>
+                                        <div class="product-list">
+                                            <ul class="row">
+                                                @foreach ($paket as $p)
+                                                    <li class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="product-box">
+                                                            <div class="producct-img"><img class="col-md-12"
+                                                                    src="{{ asset('gambar/' . $p->gambar_makanan) }}"
+                                                                    alt="" style="width: auto; height: 200px">
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h4><a href="#">{{ $p->nama_makanan }}</a></h4>
+                                                                <div class="price">
+                                                                    <ins>@rupiah($p->harga)</ins>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-wrap">
+                                        <div class="title row">
+                                            <h6 class="mb-10">----- CEMILAN -----</h6>
+                                        </div>
+                                        <div class="mb-10"></div>
+                                        <div class="product-list">
+                                            <ul class="row">
+                                                @foreach ($cemilan as $c)
+                                                    <li class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="product-box">
+                                                            <div class="producct-img"><img class="col-md-12"
+                                                                    src="{{ asset('gambar/' . $c->gambar_makanan) }}"
+                                                                    alt="" style="width: auto; height: 200px">
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h4><a href="#">{{ $c->nama_makanan }}</a></h4>
+                                                                <div class="price">
+                                                                    <ins>@rupiah($c->harga)</ins>
                                                                 </div>
                                                             </div>
                                                         </div>
