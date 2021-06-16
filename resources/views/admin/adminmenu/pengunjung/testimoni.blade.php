@@ -6,40 +6,30 @@
         <h2 class="h3 mb-0">Daftar Testimoni</h2>
     </div>
 
-    <div class="row">
-        <div class="col-md-4 mb-20">
-            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                <div class="img pb-30">
-                    <img src="{{ asset('admin/vendors/images/medicine-bro.svg') }}" alt="">
+    <div class="row clearfix">
+
+        @foreach ($komen as $komen)
+        <form action="{{ route('testimoni.destroy', $komen->id )}}" method="POST" id="{{ $komen->id }}">
+            @csrf
+            <input type="hidden" name="_method" value="DELETE">
+        </form>
+        
+        <div class="col-sm-12 col-md-4 mb-30">
+            <div class="card card-box">
+                <h5 class="card-header weight-500">{{ $komen->email }}</h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $komen->nama }}</h5>
+                    <p class="card-text">{{ $komen->komentar }}</p>
+                    <button form="{{ $komen->id }}" onclick="return confirm('Hapus Komentar?');" class="btn btn-danger">Hapus</button>
                 </div>
-                <div class="content">
-                    <h3 class="h4">Services</h3>
-                    <p class="max-width-200 ">We provide superior health care in a compassionate maner</p>
+                <div class="card-footer text-muted">
+                    {{ $komen->created_at }}
                 </div>
-            </a>
+            </div>
         </div>
-        <div class="col-md-4 mb-20">
-            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                <div class="img pb-30">
-                    <img src="{{ asset('admin/vendors/images/remedy-amico.svg') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3 class="h4">Medications</h3>
-                    <p class="max-width-200 ">Look for prescription and over-the-counter drug information.</p>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 mb-20">
-            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                <div class="img pb-30">
-                    <img src="{{ asset('admin/vendors/images/paper-map-cuate.svg') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3 class="h4">Locations</h3>
-                    <p class="max-width-200 ">Convenient locations when and where you need them.</p>
-                </div>
-            </a>
-        </div>
+
+        @endforeach
+
     </div>
 
 @endsection

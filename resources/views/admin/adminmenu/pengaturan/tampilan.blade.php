@@ -2,44 +2,122 @@
 
 @section('content')
 
-    <div class="title pb-20">
-        <h2 class="h3 mb-0">Pengaturan Tampilan</h2>
+<div class="min-height-200px">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="title">
+                            <h4>Informasi & Kontak</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Pengaturan Informasi dan Kontak</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            @foreach ($datakon as $datakon)
+            @endforeach
+            <div class="faq-wrap">
+                <h4 class="mb-20 h4 text-blue">HOME</h4>
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq1">
+                                Halaman Home
+                            </button>
+                        </div>
+                        <hr>
+                        <div id="faq1" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <form action="{{ route('kontak.update', $datakon->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <label>Info Telephone</label>
+                                                <input class="form-control" id="tel" name="kontak"
+                                                    type="text" value="{{ $datakon->kontak }}" placeholder="info telephone..." required>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label>Info Operasional</label>
+                                                <input class="form-control" id="jadwal" name="jadwal"
+                                                    type="time" value="{{ $datakon->jadwal }}" placeholder="info buka..." required>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <input class="form-control" name="lokasi"
+                                                    type="hidden" value="{{ $datakon->lokasi }}" required>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <input class="form-control" name="email"
+                                                    type="hidden" value="{{ $datakon->email }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 col-md-12">
+                                                <button type="submit" class="btn col-sm-12 col-md-12" data-bgcolor="#4EC5F1"
+                                                    data-color="#ffffff"><i class="fa fa-telegram"></i> Ubah</button>
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="mb-20 h4 text-blue">TENTANG</h4>
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-block collapsed" data-toggle="collapse" data-target="#faq2">
+                                Halaman Tentang
+                            </button>
+                        </div>
+                        <hr>
+                        <div id="faq2" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <form action="{{ route('kontak.update', $datakon->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <label>Info Lokasi</label>
+                                                <input class="form-control" id="lokasi" name="lokasi"
+                                                    type="text" value="{{ $datakon->lokasi }}" placeholder="info lokasi..." required>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <label>Info Email</label>
+                                                <input class="form-control" id="email" name="email"
+                                                    type="text" value="{{ $datakon->email }}" placeholder="info email..." required>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <input class="form-control" name="kontak"
+                                                    type="hidden" value="{{ $datakon->kontak }}" required>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <input class="form-control" name="jadwal"
+                                                    type="hidden" value="{{ $datakon->jadwal }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 col-md-12">
+                                                <button type="submit" class="btn col-sm-12 col-md-12" data-bgcolor="#4EC5F1"
+                                                    data-color="#ffffff"><i class="fa fa-telegram"></i> Ubah</button>
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-4 mb-20">
-            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                <div class="img pb-30">
-                    <img src="{{ asset('admin/vendors/images/medicine-bro.svg') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3 class="h4">Services</h3>
-                    <p class="max-width-200 ">We provide superior health care in a compassionate maner</p>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 mb-20">
-            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                <div class="img pb-30">
-                    <img src="{{ asset('admin/vendors/images/remedy-amico.svg') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3 class="h4">Medications</h3>
-                    <p class="max-width-200 ">Look for prescription and over-the-counter drug information.</p>
-                </div>
-            </a>
-        </div>
-        <div class="col-md-4 mb-20">
-            <a href="#" class="card-box d-block mx-auto pd-20 text-secondary">
-                <div class="img pb-30">
-                    <img src="{{ asset('admin/vendors/images/paper-map-cuate.svg') }}" alt="">
-                </div>
-                <div class="content">
-                    <h3 class="h4">Locations</h3>
-                    <p class="max-width-200 ">Convenient locations when and where you need them.</p>
-                </div>
-            </a>
-        </div>
-    </div>
+
 
 @endsection

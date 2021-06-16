@@ -1,5 +1,16 @@
 @extends('user.layout.headfoot')
 
+@foreach ($about as $info)
+@endforeach
+
+@section('kontak')
+{{ $info->kontak }}
+@endsection
+
+@section('jadwal')
+{{ $info->jadwal }}
+@endsection
+
 @section('about')
     active
 @endsection
@@ -36,11 +47,11 @@
 
                 <div class="col-lg-6 col-md-6">
                     <div class="member">
-                        <div class="pic"><img src="{{ asset('userinterface/assets/img/chefs/chefs-1.jpg') }}"
-                                class="img-fluid" alt=""></div>
+                        <div class="pic"><img src="{{ asset('gambar/owner.jpg') }}"
+                                class="img-fluid" alt="" style="height: 550px; width: 400px;"></div>
                         <div class="member-info">
-                            <h4>Pak'e</h4>
-                            <span>Bartender</span>
+                            <h4>Ibu Isna</h4>
+                            <span>OWNER</span>
                             <div class="social">
                                 <a href=""><i class="icofont-twitter"></i></a>
                                 <a href=""><i class="icofont-facebook"></i></a>
@@ -69,11 +80,11 @@
 
                 <div class="col-lg-6 col-md-6">
                     <div class="member">
-                        <div class="pic"><img src="{{ asset('userinterface/assets/img/chefs/chefs-2.jpg') }}"
-                                class="img-fluid" alt=""></div>
+                        <div class="pic"><img src="{{ asset('gambar/chef.jpg') }}"
+                                class="img-fluid" alt="" style="height: 550px; width: 400px;"></div>
                         <div class="member-info">
-                            <h4>Bu'e</h4>
-                            <span>Koki</span>
+                            <h4>Punky Sastro</h4>
+                            <span>CHEF</span>
                             <div class="social">
                                 <a href=""><i class="icofont-twitter"></i></a>
                                 <a href=""><i class="icofont-facebook"></i></a>
@@ -99,86 +110,18 @@
             </div>
 
             <div class="row no-gutters">
-
+                
+                @foreach ($gal as $g)
                 <div class="col-lg-3 col-md-4">
                     <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso1.jpg') }}" class="venobox"
+                        <a href="{{ asset('galery/'.$g->gambar) }}" class="venobox"
                             data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso1.jpg') }}" alt=""
-                                class="img-fluid">
+                            <img src="{{ asset('galery/'.$g->gambar) }}" alt=""
+                                class="img-fluid" style="height: 300px; width: 300px;">
                         </a>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso2.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso2.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso3.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso3.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso4.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso4.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso5.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso5.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso6.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso6.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/kafendeso7.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/kafendeso7.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4">
-                    <div class="gallery-item">
-                        <a href="{{ asset('userinterface/assets/img/gallery/gallery-3.jpg') }}" class="venobox"
-                            data-gall="gallery-item">
-                            <img src="{{ asset('userinterface/assets/img/gallery/gallery-3.jpg') }}" alt=""
-                                class="img-fluid">
-                        </a>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
 
@@ -209,25 +152,25 @@
                     <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
                         <i class="icofont-google-map"></i>
                         <h4>Lokasi:</h4>
-                        <p>Jl. Makam H. No.387,Dusun 1<br>Kec. Kartasura, Kab. Sukoharjo</p>
+                        <p>{{ $info->lokasi }}</p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
                         <i class="icofont-clock-time icofont-rotate-90"></i>
                         <h4>Buka Pada:</h4>
-                        <p>Setiap Hari<br>16:00 PM - 00:00 PM</p>
+                        <p>{{ $info->jadwal }}</p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
                         <i class="icofont-envelope"></i>
                         <h4>Email:</h4>
-                        <p>kafe_ndeso@gmail.com<br>-</p>
+                        <p>{{ $info->email }}<br>-</p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
                         <i class="icofont-phone"></i>
                         <h4>Telphon/Whatsapp:</h4>
-                        <p>+62 813-2686-8227<br>+62 812-3832-3556</p>
+                        <p>{{ $info->kontak }}</p>
                     </div>
 
                 </div>

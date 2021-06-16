@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Testimoni;
+use App\Models\Kontak;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
@@ -25,25 +27,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // =============HALAMAN UTAMA / USERINTERFACE=============
 
-Route::get('/index', function () {
-    return view('index');
+Route::get('index', function () {
+    $komen = Testimoni::latest()->get();
+    $about = Kontak::select()->get();
+    return view('index', compact('komen', 'about'));
 });
 
-Route::get('/makan', function () {
-    return view('user.menu.makanan');
-});
+Route::get('/makanuser', 'App\Http\Controllers\UserController@makanuser');
 
-Route::get('/minum', function () {
-    return view('user.menu.minuman');
-});
+Route::get('/minumuser', 'App\Http\Controllers\UserController@minumuser');
 
-Route::get('/event', function () {
-    return view('user.menu.event');
-});
+Route::get('/userfasilitas', 'App\Http\Controllers\UserController@fasilitas');
 
-Route::get('/about', function () {
-    return view('user.menu.about');
-});
+Route::get('/about', 'App\Http\Controllers\UserController@tentang');
 
 // ========================================================
 
@@ -58,28 +54,15 @@ Route::resource('makan', 'App\Http\Controllers\MakananController');
 Route::resource('minum', 'App\Http\Controllers\MinumanController');
 
 // ------------Event
-Route::get('/eventadmin', function () {
-    return view('admin.adminmenu.event');
-});
+Route::resource('halfasilitas', 'App\Http\Controllers\FasilitasController');
 
 // ------------Pengunjung
-Route::get('/pesan', function () {
-    return view('admin.adminmenu.pengunjung.pemesanan');
-});
 
-Route::get('/testi', function () {
-    return view('admin.adminmenu.pengunjung.testimoni');
-});
+Route::resource('testimoni', 'App\Http\Controllers\TertimoniController');
 
 // ------------Pengaturan
 Route::resource('galeri', 'App\Http\Controllers\GaleryController');
 
-Route::get('/tampil', function () {
-    return view('admin.adminmenu.pengaturan.tampilan');
-});
-
-Route::get('/tentang', function () {
-    return view('admin.adminmenu.pengaturan.tentang');
-});
+Route::resource('kontak', 'App\Http\Controllers\KontakController');
 
 // *******************************************************

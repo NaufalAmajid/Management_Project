@@ -60,7 +60,7 @@
             <div class="menu-icon dw dw-menu"></div>
             <div class="search-toggle-icon dw dw-search2" data-toggle="header_search"></div>
             <div class="header-search">
-                <form>
+                {{-- <form>
                     <div class="form-group mb-0">
                         <i class="dw dw-search2 search-icon"></i>
                         <input type="text" class="form-control search-input" placeholder="Search Here">
@@ -93,42 +93,42 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> --}}
             </div>
         </div>
         <div class="header-right">
-            <div class="dashboard-setting user-notification">
+            {{-- <div class="dashboard-setting user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
                         <i class="dw dw-settings2"></i>
                     </a>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="user-info-dropdown">
                 <div class="dropdown">
                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <span class="user-icon">
-                            <img src="{{ asset('admin/vendors/images/photo1.jpg') }}" alt="">
+                            <img src="{{ asset('admin/vendors/images/logokd.png') }}" alt="">
                         </span>
-                        <span class="user-name">Ross C. Lopez</span>
+                        <span class="user-name">kaffe ndeso</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                        <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                        {{-- <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
                         <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                        <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a> --}}
                         <a class="dropdown-item" href="login.html"><i class="dw dw-logout"></i> Log Out</a>
                     </div>
                 </div>
             </div>
             <div class="github-link">
-                <a href="https://github.com/dropways/deskapp" target="_blank"><img
+                <a href="https://github.com/NaufalAmajid/Management_Project" target="_blank"><img
                         src="{{ asset('admin/vendors/images/github.svg') }}" alt=""></a>
             </div>
         </div>
     </div>
 
-    <div class="right-sidebar">
+    {{-- <div class="right-sidebar">
         <div class="sidebar-title">
             <h3 class="weight-600 font-16 text-blue">
                 Layout Settings
@@ -215,11 +215,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="{{ route('kd-admin.index') }}">
                 <img src="{{ asset('admin/vendors/images/admin.png') }}" alt="" class="dark-logo">
                 <img src="{{ asset('admin/vendors/images/admin.png') }}" alt="" class="light-logo">
             </a>
@@ -245,8 +245,8 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ url('eventadmin') }}" class="dropdown-toggle no-arrow">
-                            <span class="micon dw dw-agenda1"></span><span class="mtext">Event</span>
+                        <a href="{{ route('halfasilitas.index') }}" class="dropdown-toggle no-arrow">
+                            <span class="micon dw dw-agenda1"></span><span class="mtext">Fasilitas</span>
                         </a>
                     </li>
                     <li class="dropdown">
@@ -254,8 +254,8 @@
                             <span class="micon dw dw-group"></span><span class="mtext">Pengunjung</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ url('pesan') }}">Pemesanan</a></li>
-                            <li><a href="{{ url('testi') }}">Testimoni</a></li>
+                            {{-- <li><a href="{{ url('pesan') }}">Pemesanan</a></li> --}}
+                            <li><a href="{{ route('testimoni.index') }}">Testimoni</a></li>
                         </ul>
                     </li>
                     <li>
@@ -269,9 +269,8 @@
                             <span class="micon dw dw-settings2"></span><span class="mtext"> Pengaturan </span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="{{ url('tampil') }}">Tampilan</a></li>
+                            <li><a href="{{ route('kontak.index') }}">Kontak</a></li>
                             <li><a href="{{ route('galeri.index') }}">Galeri</a></li>
-                            <li><a href="{{ url('tentang') }}">Tentang</a></li>
                         </ul>
                     </li>
                     <li>
@@ -315,6 +314,12 @@
     <script src="{{ asset('admin/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('admin/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('admin/vendors/scripts/dashboard3.js') }}"></script>
+    <script src="https://cdn.rawgit.com/igorescobar/jQuery-Mask-Plugin/1ef022ab/dist/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#tel').mask('0000-0000-0000');
+    })
+    </script>
 </body>
 
 </html>

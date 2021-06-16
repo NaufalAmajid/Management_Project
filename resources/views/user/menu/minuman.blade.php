@@ -1,154 +1,128 @@
 @extends('user.layout.headfoot')
 
+@foreach ($about as $info)
+@endforeach
+
+@section('kontak')
+{{ $info->kontak }}
+@endsection
+
+@section('jadwal')
+{{ $info->jadwal }}
+@endsection
+
 @section('aktifmenu')
     active
 @endsection
 
 @section('content')
-    
+
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
-      <div class="container">
+        <div class="container">
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Kaffe Ndeso</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Menu Makanan</li>
-          </ol>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Kaffe Ndeso</h2>
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li>Menu Minuman</li>
+                </ol>
+            </div>
+
         </div>
-
-      </div>
     </section><!-- End Breadcrumbs Section -->
 
 
-  <!-- ======= Menu Section ======= -->
-  <section id="menu" class="menu">
-    <div class="container">
+    <!-- ======= Menu Section ======= -->
+    <section id="menu" class="menu">
+        <div class="container">
 
-      <div class="section-title">
-        <h2>Menu <span>Makanan</span></h2>
-      </div>
-
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="menu-flters">
-            <li data-filter="*" class="filter-active">Semua</li>
-            <li data-filter=".filter-mabe">Makan Besar</li>
-            <li data-filter=".filter-paket">Paketan</li>
-            <li data-filter=".filter-cemil">Cemilan</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row menu-container">
-
-            <!-- MAKAN BESAR -->
-        
-        <div class="col-lg-6 menu-item filter-mabe">
-            <div class="menu-content">
-                <h5 style="font-family:Tahoma;">-----MAKAN BESAR-----</h5>
-            </div>           
-        </div>
-
-        <div class="col-lg-6 menu-item filter-mabe">
-          <div class="menu-content">
-            <a href>Sego Mancan Kerah</a><span>Rp. 12.000</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div>
-
-        <div class="col-lg-6 menu-item filter-mabe">
-            <div class="menu-content">
-              <a href>Sego Goreng</a><span>Rp. 13.000</span>
+            <div class="section-title">
+                <h2>Menu <span>Minuman</span></h2>
             </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-        </div>
 
-        <div class="col-lg-6 menu-item filter-mabe">
-            <div class="menu-content">
-              <a href>Mie Goreng</a><span>Rp. 10.000</span>
+            <div class="row">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <ul id="menu-flters">
+                        <li data-filter="*" class="filter-active">Semua</li>
+                        <li data-filter=".filter-reg">Reguler</li>
+                        <li data-filter=".filter-jum">Jumbo</li>
+                        <li data-filter=".filter-kopi">Aneka Kopi</li>
+                        <li data-filter=".filter-tra">Tradisional</li>
+                    </ul>
+                </div>
             </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-        </div>
 
-            <!-- PAKETAN -->
-        <div class="col-lg-6 menu-item filter-paket">
-            <div class="menu-content">
-                <h5 style="font-family:Tahoma;">-----PAKETAN-----</h5>
-            </div>           
-        </div>
+            <div class="row menu-container">
 
-        <div class="col-lg-6 menu-item filter-paket">
-          <div class="menu-content">
-            <a href>Ayam Lada Hitam + Es/Hot Teh</a><span>Rp. 15.000</span>
-          </div>
-          <div class="menu-ingredients">
-            Lorem, deren, trataro, filede, nerada
-          </div>
-        </div>
+                <!-- MAKAN BESAR -->
 
-        <div class="col-lg-6 menu-item filter-paket">
-            <div class="menu-content">
-              <a href>Ayam Mercon + Es/Hot Teh</a><span>Rp. 15.000</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-        </div>
+                <div class="col-lg-12 menu-item filter-reg">
+                    <div class="menu-title">
+                        <h5 style="font-family:Tahoma;">-----REGULER-----</h5>
+                    </div>
+                </div>
 
-        <div class="col-lg-6 menu-item filter-paket">
-            <div class="menu-content">
-              <a href>Ayam Gongso + Es/Hot Teh</a><span>Rp. 15.000</span>
-            </div>
-            <div class="menu-ingredients">
-              Lorem, deren, trataro, filede, nerada
-            </div>
-        </div>
+                @foreach ($dataminum[2] as $reg)
+                <div class="col-lg-6 menu-item filter-reg">
+                    <div class="menu-content">
+                        <a href href ="{{ asset('gambar/'.$reg->gambar_minuman) }}" class="venobox"
+                            data-gall="gallery-item">{{$reg->nama_minuman}}</a><span>@rupiah($reg->harga)</span>
+                    </div>
+                </div>
+                @endforeach
 
-            <!-- CEMILAN -->
-        <div class="col-lg-6 menu-item filter-cemil">
-            <div class="menu-content">
-                <h5 style="font-family:Tahoma;">-----CEMILAN-----</h5>
-            </div>           
-        </div>
-        
-        <div class="col-lg-6 menu-item filter-cemil">
-          <div class="menu-content">
-            <a href>Tempe Mendoan</a><span>Rp. 8.000</span>
-          </div>
-          <div class="menu-ingredients">
-            A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-          </div>
-        </div>
+                <!-- JUMBO -->
+                <div class="col-lg-12 menu-item filter-jum">
+                    <div class="menu-title">
+                        <h5 style="font-family:Tahoma;">-----JUMBO-----</h5>
+                    </div>
+                </div>
 
-        <div class="col-lg-6 menu-item filter-cemil">
-            <div class="menu-content">
-              <a href>Roti Bakar</a><span>Rp. 10.000</span>
-            </div>
-            <div class="menu-ingredients">
-              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-            </div>
-        </div>
+                @foreach ($dataminum[3] as $jum)
+                <div class="col-lg-6 menu-item filter-jum">
+                    <div class="menu-content">
+                        <a href href ="{{ asset('gambar/'.$jum->gambar_minuman) }}" class="venobox"
+                            data-gall="gallery-item">{{$jum->nama_minuman}}</a><span>{{$jum->harga}}</span>
+                    </div>
+                </div>
+                @endforeach
 
-        <div class="col-lg-6 menu-item filter-cemil">
-            <div class="menu-content">
-              <a href>Onion Ring</a><span>Rp. 7.000</span>
-            </div>
-            <div class="menu-ingredients">
-              A delicate crab cake served on a toasted roll with lettuce and tartar sauce
-            </div>
-        </div>
-        
-      </div>
+                <!-- ANEKA KOPI -->
+                <div class="col-lg-12 menu-item filter-kopi">
+                    <div class="menu-title">
+                        <h5 style="font-family:Tahoma;">-----ANEKA KOPI-----</h5>
+                    </div>
+                </div>
 
-    </div>
-  </section><!-- End Menu Section -->
+                @foreach ($dataminum[1] as $kopi)
+                <div class="col-lg-6 menu-item filter-tra">
+                    <div class="menu-content">
+                        <a href href ="{{ asset('gambar/'.$kopi->gambar_minuman) }}" class="venobox"
+                            data-gall="gallery-item">{{$kopi->nama_minuman}}</a><span>{{$kopi->harga}}</span>
+                    </div>
+                </div>
+                @endforeach
+
+                <!-- TRADISIONAL -->
+                <div class="col-lg-12 menu-item filter-tra">
+                    <div class="menu-title">
+                        <h5 style="font-family:Tahoma;">-----TRADISIONAL-----</h5>
+                    </div>
+                </div>
+
+                @foreach ($dataminum[4] as $tra)
+                <div class="col-lg-6 menu-item filter-tra">
+                    <div class="menu-content">
+                        <a href href ="{{ asset('gambar/'.$tra->gambar_minuman) }}" class="venobox"
+                            data-gall="gallery-item">{{$tra->nama_minuman}}</a><span>{{$tra->harga}}</span>
+                    </div>
+                </div>
+                @endforeach
+
+            </div>
+
+        </div>
+    </section><!-- End Menu Section -->
 
 @endsection
